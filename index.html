@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <meta name="description" content="Reaper : Social Media scraping tool">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=41fb4b34f17691f3e391290d089f9b0e67992440">
+
+    <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Pinterest | Reaper</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Pinterest" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Social Media scraping tool" />
+<meta property="og:description" content="Social Media scraping tool" />
+<link rel="canonical" href="https://reaper.social/platforms/pinterest.html" />
+<meta property="og:url" content="https://reaper.social/platforms/pinterest.html" />
+<meta property="og:site_name" content="Reaper" />
+<script type="application/ld+json">
+{"description":"Social Media scraping tool","@type":"WebPage","url":"https://reaper.social/platforms/pinterest.html","headline":"Pinterest","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/ScriptSmith/reaper">View Reaper on GitHub</a>
+
+        <h1 id="project_title"><a style="text-decoration: none; color: white;" href="/">Reaper</a></h1>
+        <h2 id="project_tagline">Social Media scraping tool</h2>
+
+        
+    </header>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <h1 id="pinterest">Pinterest</h1>
+<p>To download data from Pinterest, you should make use of the <a href="https://developers.pinterest.com/docs/getting-started/introduction/">Pinterest API</a></p>
+
+<p>Your own information is accessible through their API. If you obtain approval from pinterest, most public information can be accessed through their API.</p>
+
+<p>To see a list of all possible endpoints on the API, visit the reference: <a href="https://developers.pinterest.com/docs/api/overview/">https://developers.pinterest.com/docs/api/overview/</a></p>
+
+<p>The reference will also explain what information you can get out of the <em>User</em>, <em>Board</em>, and <em>Pin</em> endpoints.</p>
+
+<h2 id="access-token">Access token</h2>
+
+<p>To scrape data from the Pinterest API, you will need to create an app.</p>
+
+<p>Start by signing in to Pinterest, navigating to <a href="https://developers.pinterest.com/apps/">https://developers.pinterest.com/apps/</a> and creating an app</p>
+
+<p><img src="images/pinterest1.png" alt="" /></p>
+
+<p>On the next page, in the Redirect URIs textbox, put in:</p>
+
+<p><code class="highlighter-rouge">https://scriptsmith.github.io/reaper-site/redirect.html</code></p>
+
+<p>Then press enter and save your changes</p>
+
+<p><img src="images/pinterest2.png" alt="" /></p>
+
+<p>Now, scroll to the top of the page and copy the App ID and App secret into the fields below:</p>
+
+<p>
+App id: <input type="text" id="appid" />
+</p>
+<p>
+App secret: <input type="text" id="appsecret" />
+</p>
+
+<p>Now click this button and accept the request permissions:</p>
+
+<script>
+function auth() {
+    client_id = document.getElementById('appid').value;
+    window.open("https://api.pinterest.com/oauth/?response_type=code&client_id=" + client_id + "&state=reaper&scope=read_public,write_public,read_relationships,write_relationships&redirect_uri=https://scriptsmith.github.io/reaper-site/redirect.html")
+}
+
+function post() {
+    console.log('posted')
+    client_id = document.getElementById('appid').value;
+    client_secret = document.getElementById('appsecret').value;
+    code = document.getElementById('code').value;
+    var http = new XMLHttpRequest();
+    var url = "https://api.pinterest.com/v1/oauth/token";
+    var params = "grant_type=authorization_code&client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code;
+    console.log(params)
+    http.open("POST", url, true);
+    
+    //Send the proper header information along with the request
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        document.getElementById('accesstoken').innerHTML = http.responseText;
+    }
+    http.send(params);
+}
+</script>
+
+<p><button onclick="auth()">Click me</button></p>
+
+<p>Copy the code from the page you are redirected to into the field below:</p>
+
+<p>
+Code: <input type="text" id="code" />
+</p>
+
+<p>Now click this button:</p>
+
+<p><button onclick="post()">Click me</button></p>
+
+<p>When it appears, copy the access token below into Reaper:</p>
+
+<p><em>If an error occurs, try request the code again</em></p>
+
+<div id="accesstoken" style="background-color: grey"></div>
+
+<p><img src="images/pinterest3.png" alt="" /></p>
+
+<h2 id="a-note-on-access-to-profile-information">A note on access to profile information</h2>
+
+<p>To request a list of boards belonging to a user, you can use the <strong>User -&gt; Boards</strong> node. This will only work with your own user (<code class="highlighter-rouge">me</code> or <code class="highlighter-rouge">your.username</code>), you can’t request a list of boards from other users.</p>
+
+<p>However, if you want to scrape the information about or the pins belonging to a known board (as in, you know the name of the board) then you can download it for any user that has made that board public.</p>
+
+    </section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
+        
+        <p class="copyright">Reaper maintained by <a href="https://github.com/ScriptSmith">ScriptSmith</a></p>
+        
+        <p><a href="/privacy.html">Privacy Policy</a></p>
+        <p><a href="/terms.html">Terms and Conditions</a></p>
+    </footer>
+</div>
+
+
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79900226-2', 'auto');
+    ga('send', 'pageview');
+</script>
+
+</body>
+</html>
