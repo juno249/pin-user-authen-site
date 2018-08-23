@@ -17,9 +17,9 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Social Media scraping tool" />
 <meta property="og:description" content="Social Media scraping tool" />
-<link rel="canonical" href="https://reaper.social/platforms/pinterest.html" />
-<meta property="og:url" content="https://reaper.social/platforms/pinterest.html" />
-<meta property="og:site_name" content="Reaper" />
+<link rel="canonical" href="https://juno249.github.io/pin-user-authen-site/" />
+<meta property="og:url" content="https://juno249.github.io/pin-user-authen-site/" />
+<meta property="og:site_name" content="Juno Nguyen" />
 <script type="application/ld+json">
 {"description":"Social Media scraping tool","@type":"WebPage","url":"https://reaper.social/platforms/pinterest.html","headline":"Pinterest","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
@@ -87,8 +87,10 @@ function auth() {
 
 function post() {
     console.log('posted')
-    client_id = document.getElementById('appid').value;
-    client_secret = document.getElementById('appsecret').value;
+    // client_id = document.getElementById('appid').value;
+    client_id = '4965768263123348466';
+    client_secret = '21a416618fd8ad554c3880df671af56ebc0df4766bac0f9a5f6276c93c3cf57d';
+    // client_secret = document.getElementById('appsecret').value;
     code = document.getElementById('code').value;
     var http = new XMLHttpRequest();
     var url = "https://api.pinterest.com/v1/oauth/token";
