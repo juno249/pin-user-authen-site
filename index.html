@@ -6,7 +6,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <meta name="description" content="Reaper : Social Media scraping tool">
+    <meta name="description" content="Juno Nguyen : Social Media scraping tool">
 
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=41fb4b34f17691f3e391290d089f9b0e67992440">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
     <meta property="og:url" content="https://juno249.github.io/pin-user-authen-site/" />
     <meta property="og:site_name" content="Juno Nguyen" />
     <script type="application/ld+json">
-    {"description":"Social Media scraping tool","@type":"WebPage","url":"https://reaper.social/platforms/pinterest.html","headline":"Pinterest","@context":"http://schema.org"}</script>
+    {"description":"Social Media scraping tool","@type":"WebPage","url":"https://juno249.github.io/pin-user-authen-site/","headline":"Pinterest","@context":"http://schema.org"}</script>
     <!-- End Jekyll SEO tag -->
 
 </head>
@@ -86,16 +86,16 @@ App secret: <input type="text" id="appsecret" />
 
 <script>
 function auth() {
-    // client_id = document.getElementById('appid').value;
-    client_id = '4965768263123348466';
+    client_id = document.getElementById('appid').value;
+    // client_id = '4965768263123348466';
     window.open("https://api.pinterest.com/oauth/?response_type=code&client_id=" + client_id + "&state=juno&scope=read_public,write_public,read_relationships,write_relationships&redirect_uri=https://juno249.github.io/pin-auth-site/")
 }
 
 function post() {
     console.log('posted')
-    // client_id = document.getElementById('appid').value;
-    client_id = '4965768263123348466';
-    client_secret = '21a416618fd8ad554c3880df671af56ebc0df4766bac0f9a5f6276c93c3cf57d';
+    client_id = document.getElementById('appid').value;
+    // client_id = '4965768263123348466';
+    // client_secret = '21a416618fd8ad554c3880df671af56ebc0df4766bac0f9a5f6276c93c3cf57d';
     // client_secret = document.getElementById('appsecret').value;
     code = document.getElementById('code').value;
     var http = new XMLHttpRequest();
@@ -126,7 +126,7 @@ Code: <input type="text" id="code" />
 
 <p><button id="get-access-token-button" onclick="post()">Click me</button></p>
 
-<p>When it appears, copy the access token below into Reaper:</p>
+<p>When it appears, copy the access token below to use:</p>
 
 <p><em>If an error occurs, try request the code again</em></p>
 
@@ -147,7 +147,7 @@ Code: <input type="text" id="code" />
 <div id="footer_wrap" class="outer">
     <footer class="inner">
         
-        <p class="copyright">Reaper maintained by <a href="https://github.com/juno249">Juno Nguyen</a></p>
+        <p class="copyright">This tool maintained by <a href="https://github.com/juno249">Juno Nguyen</a></p>
         
         <p><a href="/privacy.html">Privacy Policy</a></p>
         <p><a href="/terms.html">Terms and Conditions</a></p>
